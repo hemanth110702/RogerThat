@@ -1,2 +1,7 @@
 AI_BUILD_GUIDE.md
 RogerThat_architecture.md
+GEMINI.md
+SESSION_NOTES.md
+node_modules
+dist
+.next

@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: rogerthat
+      POSTGRES_PASSWORD: rogerthat
+      POSTGRES_DB: rogerthat
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" 
+ 
+  backend:
+    build:
+      context: ./apps/backend 
+    ports:
+      - "4000:4000" 
+    environment:
+      DATABASE_URL: postgres://rogerthat:rogerthat@postgres:5432/rogerthat
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./apps/frontend
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - backend
+
+volumes:
+  postgres_data:
